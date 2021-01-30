@@ -9,7 +9,6 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
   <servlet>
     <servlet-name>InitializeConnection</servlet-name>
     <servlet-class>com.ecommerce.web.InitializeConnection</servlet-class>
@@ -18,7 +17,6 @@
     <servlet-name>InitializeConnection</servlet-name>
     <url-pattern>/init</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ListProducts</servlet-name>
     <servlet-class>com.ecommerce.web.ListProducts</servlet-class>
@@ -27,7 +25,6 @@
     <servlet-name>ListProducts</servlet-name>
     <url-pattern>/list-products</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>AddProducts</servlet-name>
     <servlet-class>com.ecommerce.web.AddProducts</servlet-class>
@@ -36,7 +33,6 @@
     <servlet-name>AddProducts</servlet-name>
     <url-pattern>/add-product</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>UpdateProduct</servlet-name>
     <servlet-class>com.ecommerce.web.UpdateProduct</servlet-class>
@@ -45,7 +41,6 @@
     <servlet-name>UpdateProduct</servlet-name>
     <url-pattern>/update-product</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>DeleteProduct</servlet-name>
     <servlet-class>com.ecommerce.web.DeleteProduct</servlet-class>
@@ -55,12 +50,22 @@
     <url-pattern>/delete-product</url-pattern>
   </servlet-mapping>
   
-   <servlet>
+  
+  <servlet>
     <servlet-name>UpdateProductWithParam</servlet-name>
     <servlet-class>com.ecommerce.web.UpdateProductWithParam</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateProductWithParam</servlet-name>
     <url-pattern>/update-product-with-param</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>CallAddProductStoredProcedure</servlet-name>
+    <servlet-class>com.ecommerce.web.CallAddProductStoredProcedure</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CallAddProductStoredProcedure</servlet-name>
+    <url-pattern>/add-product-sp</url-pattern>
   </servlet-mapping>
 </web-app>
