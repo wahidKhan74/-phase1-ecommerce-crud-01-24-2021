@@ -54,4 +54,13 @@
     <servlet-name>DeleteProduct</servlet-name>
     <url-pattern>/delete-product</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>UpdateProductWithParam</servlet-name>
+    <servlet-class>com.ecommerce.web.UpdateProductWithParam</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateProductWithParam</servlet-name>
+    <url-pattern>/update-product-with-param</url-pattern>
+  </servlet-mapping>
 </web-app>

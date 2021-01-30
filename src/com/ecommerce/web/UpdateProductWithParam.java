@@ -3,7 +3,6 @@ package com.ecommerce.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
@@ -17,16 +16,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.ecommerce.connection.DBConnection;
 
 /**
- * Servlet implementation class AddProducts
+ * Servlet implementation class UpdateProduct
  */
-@WebServlet("/AddProducts")
-public class AddProducts extends HttpServlet {
+@WebServlet("/UpdateProductWithParam")
+public class UpdateProductWithParam extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AddProducts() {
+	public UpdateProductWithParam() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -37,22 +36,8 @@ public class AddProducts extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		response.sendRedirect("addproduct.html");
-		return ;
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 		try {
-			System.out.println("Add product");
-			String name  = request.getParameter("productName");
-			String price  = request.getParameter("productPrice");
-			
+
 			PrintWriter out = response.getWriter();
 
 			// 1. load data from config.properties
@@ -63,25 +48,24 @@ public class AddProducts extends HttpServlet {
 			DBConnection conn = new DBConnection(properties.getProperty("url"), properties.getProperty("username"),
 					properties.getProperty("password"));
 
-			String query = "INSERT INTO eproduct (name,price) values (?, ?);";
-			
-			// 3. create statement
+			// 3. execute query
+			String query = "update eproduct set name=? where id=?;";
+						
+			// 4. create statement
 			PreparedStatement pstm = conn.getConnection().prepareStatement(query);
-			pstm.setString(1, name);
-			pstm.setDouble(2, Double.parseDouble(price));
-//			// 4. execute query
-//			String query = "INSERT INTO eproduct (name,price) values ('DELL Laptop XYZ', 7000);";
 			
-
+			// 5. set parameter values.
+			pstm.setString(1, "Asus Laptop XYZ");
+			pstm.setInt(2, 3);
 			
 			int no = pstm.executeUpdate();
 			out.println("<html><body>");
-			if(no>0) {
-				out.println("<h2> Product added Successfully !</h2>");
+			if (no > 0) {
+				out.println("<h2> Product update Successfully !</h2>");
 			} else {
-				out.println("<h2> Product cannot be added !</h2>");
+				out.println("<h2> Product cannot be updated !</h2>");
 			}
-			
+
 			out.println("</body></html>");
 			conn.closeConnection();
 
@@ -90,6 +74,16 @@ public class AddProducts extends HttpServlet {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

@@ -52,6 +52,8 @@ public class DeleteProduct extends HttpServlet {
 
 			// 4. execute query
 			String query = "delete from eproduct where id=5;";
+			
+//			String query = "delete from eproduct where id=?;";
 			int no = stm.executeUpdate(query);
 			out.println("<html><body>");
 			if (no > 0) {
